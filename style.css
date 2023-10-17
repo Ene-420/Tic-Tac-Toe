@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body,html{
+    height: 100vh;
+}
+
+.header{
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header h1{
+    margin: 10px 0;
+    font-size: 8vw;
+}
+
+.header button{
+    padding:5px 15px;
+    margin: 10px 0;
+    font-size: 4vw;
+    border: 0;
+    border-radius: 25px;
+    background-color: fuchsia;
+    color: white;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-box{
+    /* display: grid; */
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    /* grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr; */
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-container{
+    height: 100px;
+    display: flex;
+    flex: 1;
+    /* flex-direction: column; */
+    border-bottom: 1px solid blue;
+}
+
+.grid-container:last-child{
+    border-bottom:  0;
+}
+.grid-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid blue;
+    width: 150px;
+    flex: 1;
+    background-color: aqua;
+}
+
+.grid-container > .grid-item:last-child{
+    border-right: 0;
+}
+
+.game-option{
+    width: 50px;
+    height: 50px;
+}
