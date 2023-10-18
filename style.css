@@ -20,6 +20,36 @@ body,html{
     font-size: 8vw;
 }
 
+.header .header-content{
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    align-content: center;
+}
+
+.content-head{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header-content input{
+    border-radius: 15px;
+    padding: 8px;
+    
+}
+#player2{
+    height: 40px;
+}
+
+#player2_input{
+    display: none;
+}
+.header .header-items{
+    display:flex;
+    gap: 12px;
+
+}
 .header button{
     padding:5px 15px;
     margin: 10px 0;
@@ -34,6 +64,7 @@ body,html{
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: none;
 }
 
 .grid-box{

@@ -10,7 +10,34 @@
     
     <div class="header">
         <h1>TIC-TAC-TOE</h1>
-        <button>Start Game</button>
+        <div class="header-content">
+            <div class="content-head">
+                <input type="text" name="player1" id="player1" placeholder="Enter Player 1 Name">
+                <div class="content-body">
+                    <div>
+                        <input type="radio" id="gameChoice-O" value="o" checked name="item"/>
+                        <label for="gameChoice-O">O</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="gameChoice-X" value="x" name="item"/>
+                        <label for="gameChoice-X">X</label>
+                     </div>
+                </div>
+            </div>
+
+            <div class="header-items">
+                <label for="player2"> Choose Second Player</label>
+                <select name="player2" id="player2">
+                    <option value="neither">Please Choose Player 2 </option>
+                    <option value="computer">Computer</option>
+                    <option value="human" > Human</option>
+                </select>
+                <input type="text" name="player2" id="player2_input" placeholder="Enter Player 2 Name">
+            </div>
+        </div>
+        <div>
+            <button>Start Game</button>
+        </div>
 
     </div>
     <div class="body">
