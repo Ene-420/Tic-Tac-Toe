@@ -17,7 +17,7 @@ body,html{
 }
 .header h1{
     margin: 10px 0;
-    font-size: 8vw;
+    font-size: 5.5vw;
 }
 
 .header .header-content{
@@ -32,10 +32,16 @@ body,html{
     flex-direction: column;
     gap: 15px;
 }
-
+.content-body >div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
 .header-content input{
     border-radius: 15px;
     padding: 8px;
+    height: 40px;
     
 }
 #player2{
@@ -44,6 +50,7 @@ body,html{
 
 #player2_input{
     display: none;
+    height: 40px;
 }
 .header .header-items{
     display:flex;
@@ -69,32 +76,25 @@ body,html{
 
 .grid-box{
     /* display: grid; */
-    width: 500px;
-    height: 500px;
-    border: 1px solid black;
+    width: 450px;
+    height: 450px;
+    /* border: 1px solid black; */
+    flex-wrap: wrap;
     /* grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr; */
     display: flex;
     flex-direction: column;
 }
 
-.grid-container{
-    height: 100px;
-    display: flex;
-    flex: 1;
-    /* flex-direction: column; */
-    border-bottom: 1px solid blue;
-}
 
-.grid-container:last-child{
-    border-bottom:  0;
-}
 .grid-item{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     border-right: 1px solid blue;
     width: 150px;
-    flex: 1;
+    height: 150px;
+    /* flex: 1; */
     background-color: aqua;
 }
 
