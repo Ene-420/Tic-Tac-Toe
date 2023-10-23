@@ -57,7 +57,7 @@ body,html{
     gap: 12px;
 
 }
-.header button{
+.start-btn{
     padding:5px 15px;
     margin: 10px 0;
     font-size: 4vw;
@@ -67,11 +67,19 @@ body,html{
     color: white;
 }
 
+
+/* .restart-btn{
+   
+} */
+
+.winnerMessage{
+    display: none;
+}
 .body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    display: none;
+    /* display: none; */
 }
 
 .grid-box{
@@ -82,6 +90,7 @@ body,html{
     flex-wrap: wrap;
     /* grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr; */
     display: flex;
+    display: none;
     flex-direction: column;
 }
 
@@ -105,4 +114,9 @@ body,html{
 .game-option{
     width: 50px;
     height: 50px;
+}
+
+.winnerMsg{
+    font-size: 3vw;
+    font-weight: 900;
 }

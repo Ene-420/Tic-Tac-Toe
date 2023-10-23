@@ -15,7 +15,7 @@
                 <input type="text" name="player1" id="player1" placeholder="Enter Player 1 Name">
                 <div class="content-body">
                     <div>
-                        <input type="radio" id="gameChoice-O" value="o" checked name="item"/>
+                        <input type="radio" id="gameChoice-O" value="o" name="item" />
                         <label for="gameChoice-O">O</label>
                     </div>
                     <div>
@@ -42,7 +42,14 @@
     </div>
     <div class="body">
         <div class="grid-box"></div>
+
+        <div class="winnerMessage">
+            <p class="winnerMsg"></p>
+            <button class="start-btn restart-btn"> Restart Game</button>
+        </div>
     </div>
+
+    
 
     <script src="script.js"></script>
 </body>

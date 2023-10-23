@@ -36,7 +36,7 @@ const gameBoard= function(){
             gridBox.appendChild(gridItem);
     
         })
-        gridBody.style.display= 'flex';
+        gridBox.style.display= 'flex';
     }
 
     function gridItemContent(value){
@@ -124,7 +124,35 @@ const gameBoard= function(){
         gameState[position]= value;
     }
 
-    return {getGridCellNo, getGridCellState ,render, getGameState, setGameState, updateScreen}
+    function checkPosition(){
+        let winner =''
+        if(gameState){
+            console.log(gameState);
+            winningState.forEach((state) => {
+                if(gameState[state[0]] === gameState[state[1]] && gameState[state[1]] === gameState[state[2]] && gameState[state[0]] !== 2){
+                    console.log('Winning state: '+gameState[state[0]]);
+                    winner = gameState[state[0]];
+                }
+                else{
+                    //console.log(state);
+                }
+            })
+        }
+        return winner;
+    }
+
+
+    function disableScreen(name){
+        const winner = document.querySelector('.winnerMessage');
+        const winnerMessage = document.querySelector('.winnerMsg');
+        const cell = document.querySelectorAll('.grid-item');
+        winnerMessage.textContent = `The is Winner is  ${name}`;
+
+        winner.style.display='block';
+        cell.disabled =true;
+
+    }
+    return {getGridCellNo, getGridCellState ,render, getGameState, setGameState, updateScreen, checkPosition, disableScreen}
 }
 
 
@@ -143,11 +171,17 @@ const playerController = function(){
     const player2_label = document.querySelector('.header-items label');
     const player2 = document.querySelector('#player2');
     const player2_input = document.querySelector('#player2_input');
-    const checkedValue = document.querySelector("input[type='radio'][name='item']:checked")
+    let checkedValue = document.querySelector("input[name='item']:checked")
 
     let players= [];
     let playerId;
     const grid = gameBoard();
+
+    // checkedValue.addEventListener('change', ()=>{
+    //     console.log(checkedValue.value);
+    // })
+
+    
 
     player2.addEventListener('change', ()=> {
         changePlayer2Layout(player2.value);
@@ -176,13 +210,16 @@ const playerController = function(){
         }
     } 
     function createPlayer1(){
+        
         if(player1.value && checkedValue){
             const firstPlayer = createPlayer(player1.value, checkedValue.value, 'Player 1');
+            console.log(checkedValue.value)
             players.push(firstPlayer);
         }
     }  
     
     function createPlayer2(){
+        console.log(checkedValue.value);
         const player2Value = checkedValue.value ==='x' ?  'o' : 'x';
 
         if(playerId === 'human'){
@@ -214,31 +251,43 @@ const playerController = function(){
         }
     }
 
+    function getWinner(value){
+        const winner =players.filter(player => player.playerChoice === value);
+        console.log(`Winner is ${winner}`);
+        grid.disableScreen(winner[0].getName());
+    }
+
     const getCurrentPlayer =()=> currentPlayer;
 
     const getPlayers= ()=> players;
 
-    function playRound(activePlayer, key){
+    function playRound( key){
 
         //const activePlayer = getCurrentPlayer();
-        console.log(grid.getGameState())
-        console.log(activePlayer);
+        // console.log(grid.getGameState())
+        // console.log(activePlayer);
 
         if(grid.getGameState().includes(2)){
-            if(activePlayer.getName() !== 'computer'){
-                let cellCheck = grid.getGridCellState();
-                console.log(`cell check : ${cellCheck}`)
+            if(getCurrentPlayer().getName() !== 'computer'){
+                // let cellCheck = grid.getGridCellState();
+                // console.log(`cell check : ${cellCheck}`)
                 if(grid.getGameState()[key] === 2){
-                    grid.setGameState(key, activePlayer.getPlayerChoice());
+                    grid.setGameState(key, getCurrentPlayer().getPlayerChoice());
                     grid.updateScreen()
+                    const winningPlayer = grid.checkPosition();
+                    console.log(winningPlayer);
+                    if(winningPlayer){
+                        getWinner(winningPlayer);
+                    }
                     switchPlayers();
                     
                     if(getCurrentPlayer().getName() === 'computer'){
-                        setTimeout(3000, computerPlay(getCurrentPlayer()));
+                        setTimeout(3000, computerPlay());
+                        
                     }
                 }
             }
-
+            //grid.checkPosition();
             // else {
             //     setTimeout(3000, computerPlay(getCurrentPlayer()));
             // }
@@ -247,16 +296,20 @@ const playerController = function(){
 
 }
 
-    function computerPlay(activePlayer){
+    function computerPlay(){
         let randomSpace = Math.round(Math.random() *9);
         let cellState = grid.getGameState()[randomSpace];
             if(cellState === 2){
-                grid.setGameState(randomSpace, activePlayer.getPlayerChoice());
+                grid.setGameState(randomSpace, getCurrentPlayer().getPlayerChoice());
                 grid.updateScreen();
+                const winningPlayer =grid.checkPosition();
+                if(winningPlayer){
+                    getWinner(winningPlayer);
+                }
                 switchPlayers();
             }
             else{
-                computerPlay(activePlayer);
+                computerPlay();
         }
 
     }
@@ -287,7 +340,7 @@ const screenController = function(){
 
         
         if(cellKey >=0){
-            playerCall.playRound(playerCall.getCurrentPlayer(), cellKey);
+            playerCall.playRound(/*playerCall.getCurrentPlayer(),*/ cellKey);
         }
         
     }
